@@ -51,7 +51,65 @@ image {
 }
 .play-container .play-content {
   margin: 75px 0;
+  margin-bottom: 0;
   padding: 25px 10%;
+}
+.play-container .play-content .step-3-container {
+  width: 70%;
+  margin: -100px auto;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 20px;
+  box-shadow: inset 0 0 2rem rgba(255, 255, 255, 0.2), 0 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 25px;
+  text-align: center;
+}
+.play-container .play-content .step-3-container .images-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+}
+.play-container .play-content .step-3-container .images-container .image {
+  max-width: 35%;
+}
+.play-container .play-content .step-3-container .images-container .image img {
+  width: 75%;
+  border-radius: 10px;
+  gap: 15px;
+}
+.play-container .play-content .step-3-container .images-container .image button {
+  padding: 5px 25px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  position: relative;
+  opacity: 0.8;
+}
+.play-container .play-content .step-2-container {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-container .play-content .step-2-container .loading-container {
+  gap: 10px;
+}
+.play-container .play-content .step-2-container .loading-container h3 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.play-container .play-content .step-2-container .loading-container svg {
+  font-size: 4.5rem;
+  animation: spin 2s linear infinite;
 }
 .play-container .play-content .step-1-container .text-container {
   -webkit-backdrop-filter: blur(8px);
@@ -149,4 +207,13 @@ image {
 }
 .play-container .play-content .step-1-container .text-container .button-container .generate:hover::after {
   filter: blur(10px);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=Play.css.map */

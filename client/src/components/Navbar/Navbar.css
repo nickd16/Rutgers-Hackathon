@@ -50,6 +50,8 @@ image {
   justify-content: space-between;
   z-index: 1;
   background: transparent;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 .nav-container::before {
   position: absolute;
@@ -109,10 +111,10 @@ image {
   width: 100%;
 }
 .nav-container .links-container ul li .active-link {
-  color: #22577A;
+  color: #3484b9;
 }
 .nav-container .links-container ul li .active-link::before {
-  background: #22577A;
+  background: #3484b9;
 }
 .nav-container .login-container {
   padding-right: 2rem;
