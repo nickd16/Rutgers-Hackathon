@@ -1,0 +1,113 @@
+@import "../variables/variables.scss";
+
+.nav-container {
+    width: 100%;
+    position: relative;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    background: transparent;
+    
+
+    &::before {
+        position: absolute;
+        content: '';
+        left: 0;
+        top:0;
+        width: 100%;
+        backdrop-filter: blur(5px);
+        height: 0;
+        background: rgba(255,255,255,.1);
+        z-index: -1;
+        transition: .4s ease-in-out;
+    }
+
+    &:hover {
+        
+        &::before{
+           height: 100%;
+        }
+    }
+    .col {
+        padding: 25px 0 ;
+    }
+    .logo-container {
+        padding-left: 2rem;
+
+        img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .links-container {
+        ul {
+            gap: 25px;
+            li {
+                list-style: none;
+                cursor: pointer;
+                padding: 5px;
+                p {
+                    position: relative;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    
+                    &::before {
+                        position: absolute;
+                        content: '';
+                        left: 0;
+                        top: 100%;
+                        height: 2px;
+                        width: 0;
+                        border-radius: 5px;
+                        background: black;
+                        transition: .5s ease-in-out;
+                    }
+
+                    &:hover {
+                        transform: translateY(-5px);
+                        &::before {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .active-link {
+                    
+                    color: #22577A ;
+                    &::before {
+                        background: #22577A;
+                    }
+                }
+            }
+        }
+    }
+
+    .login-container {
+        padding-right: 2rem;
+
+        button {
+            padding: 10px 25px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, $primaryTeal, $primaryGreen);
+            
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .nav-container {
+        .links-container{
+            ul{
+                li{
+                    display: none;
+                }
+            }
+        }
+    }
+}

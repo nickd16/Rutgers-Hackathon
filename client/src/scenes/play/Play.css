@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  transition: 0.5s ease-in-out;
+  font-family: "AR One Sans", sans-serif;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.padding-1 {
+  padding: 10px 25px;
+}
+
+.ls-1 {
+  letter-spacing: 1px;
+}
+
+.ls-2 {
+  letter-spacing: 2px;
+}
+
+.grey-text {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.small-text {
+  font-size: 0.8rem;
+}
+
+image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.play-container {
+  position: relative;
+  background-image: url("../../assets/backgroundplay.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+.play-container .play-content {
+  margin: 75px 0;
+  padding: 25px 10%;
+}
+.play-container .play-content .step-1-container .text-container {
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  width: 50%;
+  height: 100%;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: inset 0 0 2rem rgba(255, 255, 255, 0.2), 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+.play-container .play-content .step-1-container .text-container h2 {
+  font-size: 2.2rem;
+}
+.play-container .play-content .step-1-container .text-container h2 span {
+  background-image: linear-gradient(to right, #4CACBC, #80ED99);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent; /* Make the original text color transparent */
+  font-size: 36px; /* Set the font size as needed */
+  font-size: 2.2rem;
+}
+.play-container .play-content .step-1-container .text-container p {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.play-container .play-content .step-1-container .text-container .text-input {
+  resize: none;
+  width: 70%;
+  padding: 10px 25px;
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  outline: none;
+  position: relative;
+  margin-top: 25px;
+  background-color: transparent;
+  min-height: 100px;
+  color: black;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+.play-container .play-content .step-1-container .text-container .text-input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+}
+.play-container .play-content .step-1-container .text-container .text-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+}
+.play-container .play-content .step-1-container .text-container .text-input:focus {
+  border: 2px solid #80ED99;
+  box-shadow: 0 0 1rem #80ED99;
+}
+.play-container .play-content .step-1-container .text-container .button-container {
+  width: 100%;
+  gap: 25px;
+  margin: 25px 0;
+}
+.play-container .play-content .step-1-container .text-container .button-container button {
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.play-container .play-content .step-1-container .text-container .button-container .back {
+  background: transparent;
+}
+.play-container .play-content .step-1-container .text-container .button-container .back:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.play-container .play-content .step-1-container .text-container .button-container .generate {
+  background: transparent;
+  font-style: italic;
+}
+.play-container .play-content .step-1-container .text-container .button-container .generate::before, .play-container .play-content .step-1-container .text-container .button-container .generate::after {
+  position: absolute;
+  content: "";
+  inset: -2px;
+  z-index: -2;
+  background: linear-gradient(to right, #4CACBC, #80ED99);
+  border-radius: inherit;
+  transition: 0.4s ease-in-out;
+}
+.play-container .play-content .step-1-container .text-container .button-container .generate::after {
+  filter: blur(2px);
+}
+.play-container .play-content .step-1-container .text-container .button-container .generate:hover::after {
+  filter: blur(10px);
+}/*# sourceMappingURL=Play.css.map */

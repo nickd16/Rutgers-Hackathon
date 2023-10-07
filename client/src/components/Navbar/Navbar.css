@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  transition: 0.5s ease-in-out;
+  font-family: "AR One Sans", sans-serif;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.padding-1 {
+  padding: 10px 25px;
+}
+
+.ls-1 {
+  letter-spacing: 1px;
+}
+
+.ls-2 {
+  letter-spacing: 2px;
+}
+
+.grey-text {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.small-text {
+  font-size: 0.8rem;
+}
+
+image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.nav-container {
+  width: 100%;
+  position: relative;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  background: transparent;
+}
+.nav-container::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100%;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: -1;
+  transition: 0.4s ease-in-out;
+}
+.nav-container:hover::before {
+  height: 100%;
+}
+.nav-container .col {
+  padding: 25px 0;
+}
+.nav-container .logo-container {
+  padding-left: 2rem;
+}
+.nav-container .logo-container img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+.nav-container .links-container ul {
+  gap: 25px;
+}
+.nav-container .links-container ul li {
+  list-style: none;
+  cursor: pointer;
+  padding: 5px;
+}
+.nav-container .links-container ul li p {
+  position: relative;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.nav-container .links-container ul li p::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 100%;
+  height: 2px;
+  width: 0;
+  border-radius: 5px;
+  background: black;
+  transition: 0.5s ease-in-out;
+}
+.nav-container .links-container ul li p:hover {
+  transform: translateY(-5px);
+}
+.nav-container .links-container ul li p:hover::before {
+  width: 100%;
+}
+.nav-container .links-container ul li .active-link {
+  color: #22577A;
+}
+.nav-container .links-container ul li .active-link::before {
+  background: #22577A;
+}
+.nav-container .login-container {
+  padding-right: 2rem;
+}
+.nav-container .login-container button {
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, #4CACBC, #80ED99);
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .nav-container .links-container ul li {
+    display: none;
+  }
+}/*# sourceMappingURL=Navbar.css.map */
