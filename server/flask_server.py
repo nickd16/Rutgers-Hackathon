@@ -32,7 +32,10 @@ CORS(app)
 
 @app.route("/play/<string:a>")
 def create(a):
-    generate(a)
+    aWithSpaces = a.replace("-", " ")
+    print(a)
+    print(aWithSpaces)
+    generate(aWithSpaces)
     return {"generated_images/"}
 
 if __name__ == 'main':
