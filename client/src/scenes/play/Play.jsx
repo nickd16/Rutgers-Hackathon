@@ -10,7 +10,10 @@ const Play = () => {
   const [textAreaHeight, setTextAreaHeight] = useState("auto");
   const [text, setText] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
+
   const navigate = useNavigate();
+  const [currentClosest, setCurrentClosest] = useState(10000000000);
+  const [currentClosestText, setCurrentClosestText] = useState("");
 
   /* HANDLE USER TEXT INPUT */
   const handleTextAreaChange = (e) => {
@@ -26,9 +29,15 @@ const Play = () => {
     const request = await Axios.post(
       `http://127.0.0.1:5000/play/${requestText}`
     );
-
     setStep(3);
   };
+
+  /* USER SELECTS AN IMAGE TO GUESS CAPTIONS ON */
+  const handleSelectedImage = (url) => {
+    setSelectedImage(url);
+    setStep(4);
+  };
+
   return (
     <div className="play-container">
       <Navbar />
@@ -77,7 +86,10 @@ const Play = () => {
               {imagesData.map((img, index) => (
                 <div key={index} className="image flex flex-col">
                   <img src={img.url} alt="" />
-                  <button style={{ background: img.buttonColor }}>
+                  <button
+                    onClick={handleSelectedImage(img.url)}
+                    style={{ background: img.buttonColor }}
+                  >
                     {img.buttonText}
                   </button>
                 </div>
@@ -87,6 +99,14 @@ const Play = () => {
         ) : step === 4 ? (
           <div className="step-4-container">
             {/* STEP 4: USER GUESSES THE CAPTION FOR THE IMAGE */}
+            <div className="game-content">
+              <div className="image-container">
+                <img src={selectedImage} alt="" />
+              </div>
+              <div className="input-container"></div>
+            </div>
+
+            <div className="guesses-container"></div>
           </div>
         ) : (
           ""
