@@ -8,6 +8,7 @@ const Play = () => {
     const [step, setStep] = useState(1);
     const [textAreaHeight, setTextAreaHeight] = useState("auto");
     const [text, setText] = useState("");
+    const [isGeneratingImage, setIsGeneratingImage] = useState(true);
     const navigate = useNavigate();
 
     /* HANDLE USER TEXT INPUT */
@@ -17,8 +18,11 @@ const Play = () => {
     /* PASS THE TEXT ENTERED TO THE BACKEND TO GENERATE THE IMAGE */
     const handleGenerateImage = async () => {
         if(text.length === 0) return;
+        setStep(2);
 
-        const request = await Axios.post("http://127.0.0.1:5000/play");
+        const requestText = text.replace(/ /g, "-");
+
+        const request = await Axios.post(`http://127.0.0.1:5000/play/${requestText}`);
 
         console.log(request);
         console.log(request.data);
@@ -45,9 +49,10 @@ const Play = () => {
                         <button className='back' onClick={() => navigate("/")}>Back</button>
                     </div>
                 </div>
-            </div> : step === 2 ? <div>
+            </div> : step === 2 ? <div className='step-2-container'>
                 {/* STEP 2: USER SELECTS AN IMAGE */}
-                
+                {isGeneratingImage ? <>generating image</> : <div>image</div>}
+
             </div> : ""}
         </div>
     </div>
