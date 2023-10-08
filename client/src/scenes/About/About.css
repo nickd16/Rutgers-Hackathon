@@ -39,4 +39,107 @@ image {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.hide {
+  display: none;
+}
+
+.about-container {
+  background-image: url("../../assets/background2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+.about-container .about-content {
+  width: 70%;
+  max-width: 700px;
+  margin: 75px auto;
+  padding: 35px;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 10px;
+  box-shadow: inset 0 0 2rem rgba(255, 255, 255, 0.2), 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+.about-container .about-content .bar,
+.about-container .about-content .gradient {
+  position: absolute;
+  height: 10px;
+  border-radius: 10px;
+  z-index: 1;
+}
+.about-container .about-content .bar {
+  width: 92.5%;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.about-container .about-content .about-steps {
+  margin: 50px 0;
+  margin-bottom: 25px;
+}
+.about-container .about-content .about-steps .step-container {
+  gap: 25px;
+}
+.about-container .about-content .about-steps .step-container .text-container {
+  flex: 1;
+}
+.about-container .about-content .about-steps .step-container .text-container h1 {
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 2.2rem;
+}
+.about-container .about-content .about-steps .step-container .text-container h3 {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.about-container .about-content .about-steps .step-container .text-container p {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.about-container .about-content .about-steps .step-container .text-container .button-container {
+  margin-top: 25px;
+  justify-content: flex-start;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 7px 25px;
+  border-radius: 10px;
+  position: relative;
+  border: none;
+  z-index: 1;
+  gap: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+.about-container .about-content .about-steps .step-container .text-container .button-container:hover {
+  transform: translateX(5px);
+}
+.about-container .about-content .about-steps .step-container .text-container .button-container:hover::before {
+  filter: blur(1rem);
+  transition: 0.4s ease-in-out;
+}
+.about-container .about-content .about-steps .step-container .text-container .button-container p {
+  color: black;
+}
+.about-container .about-content .about-steps .step-container .text-container .button-container::before, .about-container .about-content .about-steps .step-container .text-container .button-container::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to right, #4cacbc, #80ed99);
+  z-index: -1;
+  transition: 0.4s ease-in-out;
+}
+.about-container .about-content .about-steps .step-container .image-container {
+  flex: 1.5;
+  width: 100%;
+}
+.about-container .about-content .about-steps .step-container .image-container img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }/*# sourceMappingURL=About.css.map */

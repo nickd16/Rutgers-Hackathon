@@ -206,6 +206,13 @@
             text-align: center;
           }
 
+          p {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+          }
+
           .guess-container {
             padding: 0 10px;
             width: 100%;
@@ -314,7 +321,9 @@
           font-size: 2rem;
           font-weight: 600;
         }
-
+        p {
+          font-weight: 800;
+        }
         svg {
           font-size: 4.5rem;
           animation: spin 2s linear infinite;
@@ -365,10 +374,12 @@
           backdrop-filter: blur(20px);
           letter-spacing: 2px;
           font-size: 1.1rem;
+          font-weight: 600;
           &::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+            color: black;
             letter-spacing: 2px;
             font-size: 0.8rem;
+            font-weight: 600;
           }
           &:focus {
             border: 2px solid $primaryGreen;

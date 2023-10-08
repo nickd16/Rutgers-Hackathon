@@ -17,7 +17,7 @@ const Play = () => {
   const navigate = useNavigate();
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
-  const [remainingGuess, setRemainingGuesses] = useState(9);
+  const [remainingGuess, setRemainingGuesses] = useState(10);
   const [correctGuess, setCorrectGuess] = useState("");
   const [finalScore, setFinalScore] = useState(0);
 
@@ -83,7 +83,7 @@ const Play = () => {
     setRemainingGuesses((prev) => prev - 1);
     setCurrentGuess("");
 
-    if (remainingGuess === 0) setStep(5);
+    if (remainingGuess === 1) setStep(5);
     const formattedGuess = {
       score: formattedScore,
       text: currentGuess,
@@ -111,7 +111,7 @@ const Play = () => {
       <div className="play-content ">
         {/* STEP 1: USER INPUTS TEXT TO GENERATE an IMAGE */}
         {step === 1 ? (
-          <div className="step-1-container flex">
+          <div data-aos="zoom-in" className="step-1-container flex">
             <div className="text-container flex flex-col">
               <h2>
                 Turn Text Into <span>Art</span>
@@ -166,7 +166,7 @@ const Play = () => {
         ) : step === 4 ? (
           <div className="step-4-container">
             {/* STEP 4: USER GUESSES THE CAPTION FOR THE IMAGE */}
-            <div className="banner">
+            <div data-aos="fade-down" className="banner">
               <h1>Time to Play!!!</h1>
               <p className=" ls-1 ">
                 Can you crack the caption? You have 10 tries to guess the
@@ -176,7 +176,7 @@ const Play = () => {
             </div>
 
             <div className="step-4-content">
-              <div className="game-content">
+              <div data-aos="fade-right" className="game-content">
                 <div className="image-container flex">
                   <img src={selectedImage} alt="" />
                 </div>
@@ -210,8 +210,9 @@ const Play = () => {
                 </div>
               </div>
 
-              <div className="guesses-container ">
+              <div data-aos="fade-left" className="guesses-container ">
                 <h1>Scoreboard</h1>
+                <p>Guesses Remaining: {remainingGuess}</p>
                 {guesses.map((guess, index) => (
                   <div key={index} className={`guess-container flex`}>
                     <div
@@ -237,7 +238,7 @@ const Play = () => {
             </div>
           </div>
         ) : step === 5 ? (
-          <div className="step-5-container">
+          <div data-aos="fade-up" className="step-5-container">
             {/* STEP 5: USER GUESSED CAPTION OR THEY RAN OUT OF GUESSES */}
             {correctGuess === "" ? (
               <>
@@ -264,7 +265,7 @@ const Play = () => {
               </>
             ) : (
               <>
-                <h1 className="ls-2">Congradulations!!! </h1>
+                <h1 className="ls-2">Congratulations!!! </h1>
                 <p>
                   You correctly guessed the prompt that generated the below
                   image

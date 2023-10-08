@@ -33,8 +33,8 @@
     .subtitle {
       margin: 15px 0;
       line-height: 1.5;
-      font-weight: 600;
-      color: rgba(0, 0, 0, 0.5);
+      font-weight: 800;
+      color: rgba(0, 0, 0, 0.8);
     }
 
     .button-container {
@@ -100,6 +100,24 @@
       bottom: 0;
       left: 0;
       animation: bounce-2 3s ease-in-out infinite;
+    }
+  }
+
+  .video-container {
+    width: 45%;
+    min-width: 300px;
+    video {
+      width: 100%;
+
+      -webkit-media-controls {
+        display: none;
+      }
+
+      -webkit-media-controls-play-button,
+      -webkit-media-controls-mute-button,
+      -webkit-media-controls-volume-slider {
+        display: none !important;
+      }
     }
   }
 }

@@ -2,11 +2,12 @@ import React from "react";
 import "./Main.css";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import demo from "../../assets/demo.mp4";
 const Main = (props) => {
   const navigate = useNavigate();
   return (
     <div className="main-container flex">
-      <div className="text-container">
+      <div data-aos="fade-right" className="text-container">
         <span className="square-1"></span>
         <span className="square-2"></span>
         <h1 className="title">
@@ -26,9 +27,8 @@ const Main = (props) => {
           <p className="flex">Play</p>
         </div>
       </div>
-      <div className="video-container">
-        <h1>video</h1>
-        <video src=""> Video</video>
+      <div data-aos="fade-left" className="video-container">
+        <video src={demo} autoPlay muted></video>
       </div>
     </div>
   );

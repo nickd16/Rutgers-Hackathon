@@ -1,51 +1,50 @@
-
-
-$primaryGreen: #80ED99;
-$primaryTeal: #4CACBC;
-$primaryNavy: #22577A;
+$primaryGreen: #80ed99;
+$primaryTeal: #4cacbc;
+$primaryNavy: #22577a;
 
 * {
-    margin: 0;
-    padding: 0;
-    transition: 0.5s ease-in-out;
-    font-family: 'AR One Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: 0.5s ease-in-out;
+  font-family: "AR One Sans", sans-serif;
+}
 
-  }
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.flex-col {
+  flex-direction: column;
+}
 
-  .flex-col{
-    flex-direction: column;
-  }
+.padding-1 {
+  padding: 10px 25px;
+}
 
-  .padding-1 {
-    padding: 10px 25px;
-  }
+.ls-1 {
+  letter-spacing: 1px;
+}
 
-  .ls-1 {
-    letter-spacing: 1px;
-  }
+.ls-2 {
+  letter-spacing: 2px;
+}
 
-  .ls-2 {
-    letter-spacing: 2px;
-  }
+.grey-text {
+  color: rgba(0, 0, 0, 0.4);
+}
 
-  .grey-text {
-    color: rgba(0,0,0,.4);
-  }
+.small-text {
+  font-size: 0.8rem;
+}
 
-  .small-text {
-    font-size: .8rem;
-  }
+image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  image {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  
+.hide {
+  display: none;
+}

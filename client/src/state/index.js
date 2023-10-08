@@ -1,28 +1,26 @@
-import {createSlice} from "@reduxjs/toolkit";
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: localStorage.getItem("captionizer-user") ? JSON.parse(localStorage.getItem("captionizer-user")) : null
-
-}
+  user: localStorage.getItem("imageinate-user")
+    ? JSON.parse(localStorage.getItem("imageinate-user"))
+    : null,
+};
 
 export const authSlice = createSlice({
-    name: "auth",
-    initialState,
-    reducers: {
-      setUpdateUser: (state, action) => {
-        state.user = action.payload.user;
-      },
-      setLogin: (state, action) => {
-        state.user = action.payload.user;
-      },
-      setLogout: (state, action) => {
-        state.user = null;
-      }
+  name: "auth",
+  initialState,
+  reducers: {
+    setUpdateUser: (state, action) => {
+      state.user = action.payload.user;
     },
-  });
-  
-  export const {
-    setUpdateUser, setLogin, setLogout
-  } = authSlice.actions;
-  export default authSlice.reducer;
+    setLogin: (state, action) => {
+      state.user = action.payload.user;
+    },
+    setLogout: (state, action) => {
+      state.user = null;
+    },
+  },
+});
+
+export const { setUpdateUser, setLogin, setLogout } = authSlice.actions;
+export default authSlice.reducer;

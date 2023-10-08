@@ -41,6 +41,10 @@ image {
   background-size: cover;
 }
 
+.hide {
+  display: none;
+}
+
 .play-container {
   position: relative;
   background-image: url("../../assets/backgroundplay.png");
@@ -77,7 +81,7 @@ image {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background: linear-gradient(to right, #4CACBC, #80ED99);
+  background: linear-gradient(to right, #4cacbc, #80ed99);
   outline: none;
   opacity: 0.8;
 }
@@ -194,14 +198,14 @@ image {
   font-weight: 600;
 }
 .play-container .play-content .step-4-container .step-4-content .game-content .input-container .check textarea:focus {
-  border: 2px solid #80ED99;
+  border: 2px solid #80ed99;
 }
 .play-container .play-content .step-4-container .step-4-content .game-content .input-container .check button {
   border-radius: 10px;
-  border: 2px solid #80ED99;
+  border: 2px solid #80ed99;
   gap: 5px;
   font-size: 1.2rem;
-  background: #80ED99;
+  background: #80ed99;
   font-weight: 700;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
   cursor: pointer;
@@ -240,6 +244,12 @@ image {
 }
 .play-container .play-content .step-4-container .step-4-content .guesses-container h1 {
   text-align: center;
+}
+.play-container .play-content .step-4-container .step-4-content .guesses-container p {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 .play-container .play-content .step-4-container .step-4-content .guesses-container .guess-container {
   padding: 0 10px;
@@ -337,6 +347,9 @@ image {
   font-size: 2rem;
   font-weight: 600;
 }
+.play-container .play-content .step-2-container .loading-container p {
+  font-weight: 800;
+}
 .play-container .play-content .step-2-container .loading-container svg {
   font-size: 4.5rem;
   animation: spin 2s linear infinite;
@@ -354,7 +367,7 @@ image {
   font-size: 2.2rem;
 }
 .play-container .play-content .step-1-container .text-container h2 span {
-  background-image: linear-gradient(to right, #4CACBC, #80ED99);
+  background-image: linear-gradient(to right, #4cacbc, #80ed99);
   -webkit-background-clip: text;
           background-clip: text;
   color: transparent; /* Make the original text color transparent */
@@ -382,20 +395,23 @@ image {
           backdrop-filter: blur(20px);
   letter-spacing: 2px;
   font-size: 1.1rem;
+  font-weight: 600;
 }
 .play-container .play-content .step-1-container .text-container .text-input::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: black;
   letter-spacing: 2px;
   font-size: 0.8rem;
+  font-weight: 600;
 }
 .play-container .play-content .step-1-container .text-container .text-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: black;
   letter-spacing: 2px;
   font-size: 0.8rem;
+  font-weight: 600;
 }
 .play-container .play-content .step-1-container .text-container .text-input:focus {
-  border: 2px solid #80ED99;
-  box-shadow: 0 0 1rem #80ED99;
+  border: 2px solid #80ed99;
+  box-shadow: 0 0 1rem #80ed99;
 }
 .play-container .play-content .step-1-container .text-container .button-container {
   width: 100%;
@@ -428,7 +444,7 @@ image {
   content: "";
   inset: -2px;
   z-index: -2;
-  background: linear-gradient(to right, #4CACBC, #80ED99);
+  background: linear-gradient(to right, #4cacbc, #80ed99);
   border-radius: inherit;
   transition: 0.4s ease-in-out;
 }

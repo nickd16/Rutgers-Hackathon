@@ -41,6 +41,10 @@ image {
   background-size: cover;
 }
 
+.hide {
+  display: none;
+}
+
 .main-container {
   margin: 75px 0;
   padding: 0 10%;
@@ -62,7 +66,7 @@ image {
   font-size: 2.2rem;
 }
 .main-container .text-container .title span {
-  background-image: linear-gradient(to right, #4CACBC, #80ED99);
+  background-image: linear-gradient(to right, #4cacbc, #80ed99);
   -webkit-background-clip: text;
           background-clip: text;
   color: transparent; /* Make the original text color transparent */
@@ -72,8 +76,8 @@ image {
 .main-container .text-container .subtitle {
   margin: 15px 0;
   line-height: 1.5;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.5);
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.8);
 }
 .main-container .text-container .button-container {
   justify-content: flex-start;
@@ -82,7 +86,7 @@ image {
   padding: 10px 25px;
   position: relative;
   z-index: -1;
-  background: linear-gradient(45deg, #4CACBC, #80ED99);
+  background: linear-gradient(45deg, #4cacbc, #80ed99);
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 20px;
@@ -92,7 +96,7 @@ image {
   position: absolute;
   content: "";
   z-index: -1;
-  background: linear-gradient(45deg, #4CACBC, #80ED99);
+  background: linear-gradient(45deg, #4cacbc, #80ed99);
   inset: 0;
   border-radius: inherit;
   transition: 0.4s ease-in-out;
@@ -135,6 +139,21 @@ image {
   bottom: 0;
   left: 0;
   animation: bounce-2 3s ease-in-out infinite;
+}
+.main-container .video-container {
+  width: 45%;
+  min-width: 300px;
+}
+.main-container .video-container video {
+  width: 100%;
+}
+.main-container .video-container video -webkit-media-controls {
+  display: none;
+}
+.main-container .video-container video -webkit-media-controls-play-button,
+.main-container .video-container video -webkit-media-controls-mute-button,
+.main-container .video-container video -webkit-media-controls-volume-slider {
+  display: none !important;
 }
 
 @keyframes bounce-1 {
