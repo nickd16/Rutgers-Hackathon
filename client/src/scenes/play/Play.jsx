@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Axios from "axios";
 import { imagesData } from "./data";
+import { BsBookmarkCheckFill } from "react-icons/bs";
 const Play = () => {
   const [step, setStep] = useState(1);
   const [textAreaHeight, setTextAreaHeight] = useState("auto");
@@ -12,8 +13,8 @@ const Play = () => {
   const [selectedImage, setSelectedImage] = useState("");
 
   const navigate = useNavigate();
-  const [currentClosest, setCurrentClosest] = useState(10000000000);
-  const [currentClosestText, setCurrentClosestText] = useState("");
+  const [currentGuess, setCurrentGuess] = useState("");
+  const [guesses, setGuesses] = useState([]);
 
   /* HANDLE USER TEXT INPUT */
   const handleTextAreaChange = (e) => {
@@ -36,6 +37,26 @@ const Play = () => {
   const handleSelectedImage = (url) => {
     setSelectedImage(url);
     setStep(4);
+  };
+
+  /* USER GUESSES A PROMPT FOR THE IMAGE*/
+  const handleGuessPrompt = async () => {
+    const requestText = text.replace(/ /g, "-");
+    const requestGuess = currentGuess.replace(/ /g, "-");
+
+    const request = await Axios.post(
+      `http://127.0.0.1:5000/compare/${requestText}/${requestGuess}`
+    );
+
+    const score = request.data;
+    const formattedScore = parseInt(score * 100);
+
+    const formattedGuess = {
+      score: formattedScore,
+      text: currentGuess,
+    };
+
+    setGuesses((prevGuesses) => [...prevGuesses, formattedGuess]);
   };
 
   return (
@@ -76,6 +97,7 @@ const Play = () => {
             <div className="loading-container flex flex-col">
               <AiOutlineLoading3Quarters className="loading" />
               <h3 className="ls-2">Generating Images</h3>
+              <p className="ls-2 small-text">(ETA: 25 Seconds)</p>
             </div>
           </div>
         ) : step === 3 ? (
@@ -87,7 +109,7 @@ const Play = () => {
                 <div key={index} className="image flex flex-col">
                   <img src={img.url} alt="" />
                   <button
-                    onClick={handleSelectedImage(img.url)}
+                    onClick={() => handleSelectedImage(img.url)}
                     style={{ background: img.buttonColor }}
                   >
                     {img.buttonText}
@@ -98,15 +120,52 @@ const Play = () => {
           </div>
         ) : step === 4 ? (
           <div className="step-4-container">
-            {/* STEP 4: USER GUESSES THE CAPTION FOR THE IMAGE */}
-            <div className="game-content">
-              <div className="image-container">
-                <img src={selectedImage} alt="" />
-              </div>
-              <div className="input-container"></div>
+            <div className="banner">
+              <h1>Time to Play!!!</h1>
+              <p className=" ls-1 ">
+                Can you crack the caption? Type Your Guesses in the input field
+                to play. When you have no more guesses, click the "End" button
+              </p>
             </div>
 
-            <div className="guesses-container"></div>
+            {/* STEP 4: USER GUESSES THE CAPTION FOR THE IMAGE */}
+            <div className="step-4-content">
+              <div className="game-content">
+                <div className="image-container flex">
+                  <img src={selectedImage} alt="" />
+                </div>
+                <div className="input-container">
+                  <div className="check flex">
+                    <textarea
+                      value={currentGuess}
+                      onChange={(e) => setCurrentGuess(e.target.value)}
+                      placeholder="Enter Guess"
+                    ></textarea>
+                    <button
+                      onClick={() => handleGuessPrompt()}
+                      className="flex padding-1"
+                    >
+                      {" "}
+                      <BsBookmarkCheckFill />
+                      Check
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="guesses-container ">
+                <h1>Scoreboard</h1>
+                {guesses.map((guess, index) => (
+                  <div key={index} className={`guess-container flex`}>
+                    <div className="score">
+                      <h3>{guess.score}</h3>
+                    </div>
+
+                    <p>{guess.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ) : (
           ""

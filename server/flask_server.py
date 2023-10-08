@@ -7,12 +7,17 @@ import matplotlib.pyplot as plt
 from sentence_transformers import SentenceTransformer, util
 
 def generate(prompt):
-    newPrompt = "generate me a high quality image of"
-    newPrompt += prompt
+    prompts = ['high quality image of',
+               'super realistic image of',
+               'cartoony abstract image of',
+               'high resolution picture of']
+
+    for i in range(4):
+        prompts[i] += prompt
 
     images = []
-    for _ in range(4):
-        images.append((pipe(newPrompt, num_inference_steps=25)[0][0]))
+    for i in range(4):
+        images.append((pipe(prompts[i], num_inference_steps=25)[0][0]))
 
     for i in range(4):
         images[i].save(f'generated_images/img_choice{i}.png')
@@ -45,6 +50,12 @@ def create(a):
 @app.route("/generated_images/<path:image_filename>")
 def serve_image(image_filename):
     return send_file(f"generated_images/{image_filename}")
+
+@app.route("/compare/<string:a>/<string:b>", methods=["POST"])
+def comparePrompts(a, b):
+    text_spaces = a.replace("-", " ")
+    guess_spaces = b.replace("-", " ")
+    return str(sim_score(text_spaces, guess_spaces).item()) 
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
