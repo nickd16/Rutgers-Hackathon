@@ -8,6 +8,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
   const [isSelectedLink, setIsSelectedLink] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // update active navbar link
@@ -15,17 +16,39 @@ const Navbar = () => {
     const isPlaying = currentPath.endsWith("/play");
     if (isPlaying) setIsSelectedLink(2);
   }, []);
+
+  /* USER CLICKED A NAV LINK */
+  const handleNavLinkClick = (index) => {
+    if (index === 0) {
+      setIsSelectedLink(0);
+      navigate("/");
+      return;
+    }
+
+    if (index === 1) {
+      setIsSelectedLink(1);
+      navigate("/about");
+      return;
+    }
+
+    if (index === 2) {
+      setIsSelectedLink(2);
+      navigate("/play");
+      return;
+    }
+  };
   return (
     <nav className="nav-container ">
-      <div className="logo-container col">
+      <div className="logo-container col flex">
         <img src={logo} alt="" />
+        <p>ImageinateAI</p>
       </div>
 
       <div className="links-container col">
         <ul className="flex ls-2 ">
           <li>
             <p
-              onClick={() => setIsSelectedLink(0)}
+              onClick={() => handleNavLinkClick(0)}
               className={`${isSelectedLink === 0 ? "active-link" : ""}`}
             >
               Home
@@ -33,7 +56,7 @@ const Navbar = () => {
           </li>
           <li>
             <p
-              onClick={() => setIsSelectedLink(1)}
+              onClick={() => handleNavLinkClick(1)}
               className={`${isSelectedLink === 1 ? "active-link" : ""}`}
             >
               About
@@ -41,7 +64,7 @@ const Navbar = () => {
           </li>
           <li>
             <p
-              onClick={() => setIsSelectedLink(2)}
+              onClick={() => handleNavLinkClick(2)}
               className={`${isSelectedLink === 2 ? "active-link" : ""}`}
             >
               Play

@@ -6,6 +6,8 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Axios from "axios";
 import { imagesData } from "./data";
 import { BsBookmarkCheckFill } from "react-icons/bs";
+import { SlClose } from "react-icons/sl";
+import { AiFillPlayCircle } from "react-icons/ai";
 const Play = () => {
   const [step, setStep] = useState(1);
   const [textAreaHeight, setTextAreaHeight] = useState("auto");
@@ -15,6 +17,9 @@ const Play = () => {
   const navigate = useNavigate();
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
+  const [remainingGuess, setRemainingGuesses] = useState(9);
+  const [correctGuess, setCorrectGuess] = useState("");
+  const [finalScore, setFinalScore] = useState(0);
 
   /* HANDLE USER TEXT INPUT */
   const handleTextAreaChange = (e) => {
@@ -39,8 +44,23 @@ const Play = () => {
     setStep(4);
   };
 
+  /* IF USER HITS ENTER BUTTON, THEN THEIR GUESS WILL BE SUBMITTED */
+  const handleGuessKeyDown = async (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      await handleGuessPrompt();
+      e.target.style.height = "auto";
+      return;
+    }
+
+    setCurrentGuess(e.target.value);
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
+  };
+
   /* USER GUESSES A PROMPT FOR THE IMAGE*/
   const handleGuessPrompt = async () => {
+    if (currentGuess === "") return;
     const requestText = text.replace(/ /g, "-");
     const requestGuess = currentGuess.replace(/ /g, "-");
 
@@ -51,12 +71,37 @@ const Play = () => {
     const score = request.data;
     const formattedScore = parseInt(score * 100);
 
+    if (formattedScore >= 95) {
+      setStep(5);
+      setCorrectGuess(currentGuess);
+    }
+
+    if (formattedScore >= finalScore) {
+      setFinalScore(formattedScore);
+    }
+
+    setRemainingGuesses((prev) => prev - 1);
+    setCurrentGuess("");
+
+    if (remainingGuess === 0) setStep(5);
     const formattedGuess = {
       score: formattedScore,
       text: currentGuess,
     };
 
     setGuesses((prevGuesses) => [...prevGuesses, formattedGuess]);
+  };
+
+  /* RESETS THE GAME */
+  const handleResetGame = () => {
+    setStep(1);
+    setText("");
+    setSelectedImage("");
+    setCurrentGuess("");
+    setRemainingGuesses(9);
+    setCorrectGuess("");
+    setFinalScore(0);
+    setGuesses([]);
   };
 
   return (
@@ -120,15 +165,16 @@ const Play = () => {
           </div>
         ) : step === 4 ? (
           <div className="step-4-container">
+            {/* STEP 4: USER GUESSES THE CAPTION FOR THE IMAGE */}
             <div className="banner">
               <h1>Time to Play!!!</h1>
               <p className=" ls-1 ">
-                Can you crack the caption? Type Your Guesses in the input field
-                to play. When you have no more guesses, click the "End" button
+                Can you crack the caption? You have 10 tries to guess the
+                correct caption for the image. If you have no more guesses or
+                are out of ideas, click the "End" button.
               </p>
             </div>
 
-            {/* STEP 4: USER GUESSES THE CAPTION FOR THE IMAGE */}
             <div className="step-4-content">
               <div className="game-content">
                 <div className="image-container flex">
@@ -138,8 +184,11 @@ const Play = () => {
                   <div className="check flex">
                     <textarea
                       value={currentGuess}
-                      onChange={(e) => setCurrentGuess(e.target.value)}
+                      onChange={(e) => handleGuessKeyDown(e)}
                       placeholder="Enter Guess"
+                      onKeyDown={handleGuessKeyDown}
+                      rows={1}
+                      style={{ minHeight: "45px" }}
                     ></textarea>
                     <button
                       onClick={() => handleGuessPrompt()}
@@ -150,6 +199,14 @@ const Play = () => {
                       Check
                     </button>
                   </div>
+
+                  <button
+                    onClick={handleResetGame}
+                    className="end padding-1 flex"
+                  >
+                    {" "}
+                    End
+                  </button>
                 </div>
               </div>
 
@@ -157,7 +214,19 @@ const Play = () => {
                 <h1>Scoreboard</h1>
                 {guesses.map((guess, index) => (
                   <div key={index} className={`guess-container flex`}>
-                    <div className="score">
+                    <div
+                      className={`score ${
+                        guess.score < 40
+                          ? "red"
+                          : guess.score < 60
+                          ? "orange"
+                          : guess.score < 80
+                          ? "yellow"
+                          : guess.score < 100
+                          ? "green"
+                          : ""
+                      }`}
+                    >
                       <h3>{guess.score}</h3>
                     </div>
 
@@ -166,6 +235,53 @@ const Play = () => {
                 ))}
               </div>
             </div>
+          </div>
+        ) : step === 5 ? (
+          <div className="step-5-container">
+            {/* STEP 5: USER GUESSED CAPTION OR THEY RAN OUT OF GUESSES */}
+            {correctGuess === "" ? (
+              <>
+                <h1>No Guesses Remaining</h1>
+                <p>Sorry, you have ran out of guesses</p>
+                <img src={selectedImage} alt="" />
+                <h3 className="ls-2">"{text}"</h3>
+                <div
+                  className={`final-score ${
+                    finalScore < 40
+                      ? "red"
+                      : finalScore < 60
+                      ? "orange"
+                      : finalScore < 80
+                      ? "yellow"
+                      : finalScore < 100
+                      ? "green"
+                      : ""
+                  }`}
+                >
+                  <h3>{finalScore}</h3>
+                  <h3>Score</h3>
+                </div>
+              </>
+            ) : (
+              <>
+                <h1 className="ls-2">Congradulations!!! </h1>
+                <p>
+                  You correctly guessed the prompt that generated the below
+                  image
+                </p>
+                <img src={selectedImage} alt="" />
+                <h3 className="ls-2">"{text}"</h3>
+              </>
+            )}
+
+            <button
+              onClick={handleResetGame}
+              className="play-again padding-1 flex"
+            >
+              {" "}
+              <AiFillPlayCircle />
+              Play Again
+            </button>
           </div>
         ) : (
           ""

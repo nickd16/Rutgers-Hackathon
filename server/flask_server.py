@@ -17,7 +17,7 @@ def generate(prompt):
 
     images = []
     for i in range(4):
-        images.append((pipe(prompts[i], num_inference_steps=25)[0][0]))
+        images.append((pipe(prompts[i], num_inference_steps=1)[0][0]))
 
     for i in range(4):
         images[i].save(f'generated_images/img_choice{i}.png')
