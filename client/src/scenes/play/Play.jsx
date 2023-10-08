@@ -111,7 +111,7 @@ const Play = () => {
       <div className="play-content ">
         {/* STEP 1: USER INPUTS TEXT TO GENERATE an IMAGE */}
         {step === 1 ? (
-          <div data-aos="zoom-in" className="step-1-container flex">
+          <div className="step-1-container flex">
             <div className="text-container flex flex-col">
               <h2>
                 Turn Text Into <span>Art</span>
@@ -166,7 +166,7 @@ const Play = () => {
         ) : step === 4 ? (
           <div className="step-4-container">
             {/* STEP 4: USER GUESSES THE CAPTION FOR THE IMAGE */}
-            <div data-aos="fade-down" className="banner">
+            <div className="banner">
               <h1>Time to Play!!!</h1>
               <p className=" ls-1 ">
                 Can you crack the caption? You have 10 tries to guess the
@@ -176,7 +176,7 @@ const Play = () => {
             </div>
 
             <div className="step-4-content">
-              <div data-aos="fade-right" className="game-content">
+              <div className="game-content">
                 <div className="image-container flex">
                   <img src={selectedImage} alt="" />
                 </div>
@@ -210,7 +210,7 @@ const Play = () => {
                 </div>
               </div>
 
-              <div data-aos="fade-left" className="guesses-container ">
+              <div className="guesses-container ">
                 <h1>Scoreboard</h1>
                 <p>Guesses Remaining: {remainingGuess}</p>
                 {guesses.map((guess, index) => (
@@ -238,7 +238,7 @@ const Play = () => {
             </div>
           </div>
         ) : step === 5 ? (
-          <div data-aos="fade-up" className="step-5-container">
+          <div className="step-5-container">
             {/* STEP 5: USER GUESSED CAPTION OR THEY RAN OUT OF GUESSES */}
             {correctGuess === "" ? (
               <>
